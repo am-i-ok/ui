@@ -121,7 +121,7 @@
                     <el-option label="5 Seconds" value="5"
                     >5 Seconds</el-option
                     >
-                    <el-option label="5 Seconds" value="10"
+                    <el-option label="10 Seconds" value="10"
                     >10 Seconds</el-option
                     >
                     <el-option label="30 Seconds" value="30"
@@ -164,6 +164,29 @@
                     <el-option :label=item.name :value=item._id> </el-option>
                   </template>
                 </el-select>
+              </el-form-item>
+            </div>
+            <!--end::Input group-->
+
+            <!--begin::Input group-->
+            <div class="d-flex flex-column mb-8 fv-row">
+              <!--begin::Label-->
+              <label class="d-flex align-items-center fs-6 fw-semobold mb-2">
+                <span class="required">Failure Webhook</span>
+                <i
+                    class="fas fa-exclamation-circle ms-2 fs-7"
+                    data-bs-toggle="tooltip"
+                    title="Specify a webhook that will be triggered on failure"
+                ></i>
+              </label>
+              <!--end::Label-->
+
+              <el-form-item prop="failureWebhook">
+                <el-input
+                    v-model="checkData.failureWebhook"
+                    placeholder="Enter a valid webhook address"
+                    name="failureWebhook"
+                ></el-input>
               </el-form-item>
             </div>
             <!--end::Input group-->
@@ -233,6 +256,7 @@ import {useAgentsStore} from "@/stores/amiok/agents";
 interface NewAddressData {
   name: string;
   endpoint: string;
+  failureWebhook: string;
   interval: string;
   agents: string;
 }
@@ -253,6 +277,7 @@ export default defineComponent({
     const checkData = ref<NewAddressData>({
       name: "",
       endpoint: "",
+      failureWebhook: "",
       interval: "",
       agents: "",
     });
@@ -269,6 +294,13 @@ export default defineComponent({
         {
           required: true,
           message: "Please input a valid http endpoint",
+          trigger: "blur",
+        },
+      ],
+      failureWebhook: [
+        {
+          required: true,
+          message: "Please input a webhook url",
           trigger: "blur",
         },
       ],
@@ -313,6 +345,7 @@ export default defineComponent({
                   checkData.value = {
                     name: "",
                     endpoint: "",
+                    failureWebhook: "",
                     agents: "",
                     interval: ""
                   }
