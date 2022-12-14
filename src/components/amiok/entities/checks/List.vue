@@ -14,6 +14,7 @@
             <tr class="fw-bold text-muted">
               <th class="min-w-10px">Name</th>
               <th class="min-w-10px">Agents</th>
+              <th class="min-w-10px">Success Rate</th>
               <th class="min-w-10px">Endpoint</th>
               <th class="min-w-10px">Interval</th>
               <th class="min-w-100px text-end">Actions</th>
@@ -57,9 +58,27 @@
                 </td>
 
                 <td>
+                  <span v-if="item.results.length"
+                      class="text-dark d-block mb-1 fs-6 fw-bold"
+                  >{{ item.successRate }}%
+                  </span>
+                  <span v-if="!item.results.length"
+                        class="text-dark d-block mb-1 fs-6 fw-bold"
+                  >-
+                  </span>
+                </td>
+
+                <td>
                   <span
                       class="text-dark d-block mb-1 fs-6"
                   >{{ item.endpoint }}
+                  </span>
+                </td>
+
+                <td>
+                  <span
+                      class="text-dark d-block mb-1 fs-6"
+                  >{{ item.interval }} Seconds
                   </span>
                 </td>
 
