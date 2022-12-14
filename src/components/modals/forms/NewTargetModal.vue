@@ -32,7 +32,7 @@
           <el-form
             id="kt_modal_new_target_form"
             @submit.prevent="submit()"
-            :model="targetData"
+            :model="checkData"
             :rules="rules"
             ref="formRef"
             class="form"
@@ -40,7 +40,7 @@
             <!--begin::Heading-->
             <div class="mb-13 text-center">
               <!--begin::Title-->
-              <h1 class="mb-3">Set First Target</h1>
+              <h1 class="mb-3">Create New Check</h1>
               <!--end::Title-->
 
               <!--begin::Description-->
@@ -56,7 +56,7 @@
             <div class="d-flex flex-column mb-8 fv-row">
               <!--begin::Label-->
               <label class="d-flex align-items-center fs-6 fw-semobold mb-2">
-                <span class="required">Target Title</span>
+                <span class="required">Name</span>
                 <i
                   class="fas fa-exclamation-circle ms-2 fs-7"
                   data-bs-toggle="tooltip"
@@ -67,9 +67,32 @@
 
               <el-form-item prop="targetTitle">
                 <el-input
-                  v-model="targetData.targetTitle"
-                  placeholder="Enter Target Title"
+                  v-model="checkData.name"
+                  placeholder="Enter logical name"
                   name="targetTitle"
+                ></el-input>
+              </el-form-item>
+            </div>
+            <!--end::Input group-->
+
+            <!--begin::Input group-->
+            <div class="d-flex flex-column mb-8 fv-row">
+              <!--begin::Label-->
+              <label class="d-flex align-items-center fs-6 fw-semobold mb-2">
+                <span class="required">Endpoint</span>
+                <i
+                    class="fas fa-exclamation-circle ms-2 fs-7"
+                    data-bs-toggle="tooltip"
+                    title="Specify a target name for future usage and reference"
+                ></i>
+              </label>
+              <!--end::Label-->
+
+              <el-form-item prop="targetTitle">
+                <el-input
+                    v-model="checkData.endpoint"
+                    placeholder="Enter a valid http address"
+                    name="targetTitle"
                 ></el-input>
               </el-form-item>
             </div>
@@ -79,70 +102,39 @@
             <div class="row g-9 mb-8">
               <!--begin::Col-->
               <div class="col-md-6 fv-row">
-                <label class="required fs-6 fw-semobold mb-2">Assign</label>
+                <label class="required fs-6 fw-semobold mb-2">Interval</label>
 
-                <el-form-item prop="assign">
+                <el-form-item prop="interval">
                   <el-select
-                    v-model="targetData.assign"
-                    placeholder="Select a Team Member"
-                    name="assign"
+                    v-model="checkData.interval"
+                    placeholder="Select interval"
+                    name="interval"
                     as="select"
                   >
-                    <el-option value="">Select user...</el-option>
-                    <el-option label="Karina Clark" value="1"
-                      >Karina Clark</el-option
+                    <el-option value="">Select interval...</el-option>
+                    <el-option label="1 Second" value="1"
+                      >1 Second</el-option
                     >
-                    <el-option label="Robert Doe" value="2"
-                      >Robert Doe</el-option
+                    <el-option label="3 Seconds" value="3"
+                      >3 Seconds</el-option
                     >
-                    <el-option label="Niel Owen" value="3">Niel Owen</el-option>
-                    <el-option label="Olivia Wild" value="4"
-                      >Olivia Wild</el-option
+                    <el-option label="5 Seconds" value="5"
+                    >5 Seconds</el-option
                     >
-                    <el-option label="Sean Bean" value="5">Sean Bean</el-option>
+                    <el-option label="5 Seconds" value="10"
+                    >10 Seconds</el-option
+                    >
+                    <el-option label="30 Seconds" value="30"
+                    >30 Seconds</el-option
+                    >
+                    <el-option label="1 Minute" value="60"
+                    >1 Minute</el-option
+                    >
                   </el-select>
                 </el-form-item>
               </div>
               <!--end::Col-->
 
-              <!--begin::Col-->
-              <div class="col-md-6 fv-row">
-                <label class="required fs-6 fw-semobold mb-2">Due Date</label>
-
-                <!--begin::Input-->
-                <div class="position-relative align-items-center">
-                  <!--begin::Datepicker-->
-                  <el-form-item prop="dueDate">
-                    <el-date-picker
-                      v-model="targetData.dueDate"
-                      type="date"
-                      placeholder="Select a date"
-                      :teleported="false"
-                      popper-class="override-styles"
-                      name="dueDate"
-                    />
-                  </el-form-item>
-                  <!--end::Datepicker-->
-                </div>
-                <!--end::Input-->
-              </div>
-              <!--end::Col-->
-            </div>
-            <!--end::Input group-->
-
-            <!--begin::Input group-->
-            <div class="d-flex flex-column mb-8">
-              <label class="fs-6 fw-semobold mb-2">Target Details</label>
-
-              <el-form-item prop="targetDetails">
-                <el-input
-                  v-model="targetData.targetDetails"
-                  type="textarea"
-                  rows="3"
-                  name="targetDetails"
-                  placeholder="Type Target Details"
-                />
-              </el-form-item>
             </div>
             <!--end::Input group-->
 
@@ -150,114 +142,29 @@
             <div class="d-flex flex-column mb-8 fv-row">
               <!--begin::Label-->
               <label class="d-flex align-items-center fs-6 fw-semobold mb-2">
-                <span class="required">Tags</span>
+                <span class="required">Agents</span>
                 <i
                   class="fas fa-exclamation-circle ms-2 fs-7"
                   data-bs-toggle="tooltip"
-                  title="Specify a target priorty"
+                  title="Specify a least one agent"
                 ></i>
               </label>
               <!--end::Label-->
 
-              <el-form-item prop="tags">
+              <el-form-item prop="agents">
                 <el-select
-                  v-model="targetData.tags"
+                  v-model="checkData.agents"
                   multiple
                   filterable
                   allow-create
                   default-first-option
-                  placeholder="Choose tags for your target"
+                  placeholder="Choose agents from which the check will be initiated"
                 >
-                  <el-option label="Important" value="important"> </el-option>
-                  <el-option label="Urgent" value="urgent"> </el-option>
-                  <el-option label="High" value="high"> </el-option>
-                  <el-option label="Low" value="low"> </el-option>
-                  <el-option label="Medium" value="medium"> </el-option>
+                  <template v-for="(item, index) in store.agents" :key="index">
+                    <el-option :label=item.name :value=item._id> </el-option>
+                  </template>
                 </el-select>
               </el-form-item>
-            </div>
-            <!--end::Input group-->
-
-            <!--begin::Input group-->
-            <div class="d-flex flex-stack mb-8">
-              <!--begin::Label-->
-              <div class="me-5">
-                <label class="fs-6 fw-semobold"
-                  >Adding Users by Team Members</label
-                >
-
-                <div class="fs-7 fw-semobold text-gray-400">
-                  If you need more info, please check budget planning
-                </div>
-              </div>
-              <!--end::Label-->
-
-              <!--begin::Switch-->
-              <label
-                class="form-check form-switch form-check-custom form-check-solid"
-              >
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value="1"
-                  checked
-                />
-                <span class="form-check-label fw-semobold text-gray-400">
-                  Allowed
-                </span>
-              </label>
-              <!--end::Switch-->
-            </div>
-            <!--end::Input group-->
-
-            <!--begin::Input group-->
-            <div class="mb-15 fv-row">
-              <!--begin::Wrapper-->
-              <div class="d-flex flex-stack">
-                <!--begin::Label-->
-                <div class="fw-semobold me-5">
-                  <label class="fs-6">Notifications</label>
-
-                  <div class="fs-7 text-gray-400">
-                    Allow Notifications by Phone or Email
-                  </div>
-                </div>
-                <!--end::Label-->
-
-                <!--begin::Checkboxes-->
-                <div class="d-flex align-items-center">
-                  <!--begin::Checkbox-->
-                  <label
-                    class="form-check form-check-custom form-check-solid me-10"
-                  >
-                    <input
-                      class="form-check-input h-20px w-20px"
-                      type="checkbox"
-                      name="communication[]"
-                      value="email"
-                      checked
-                    />
-
-                    <span class="form-check-label fw-semobold"> Email </span>
-                  </label>
-                  <!--end::Checkbox-->
-
-                  <!--begin::Checkbox-->
-                  <label class="form-check form-check-custom form-check-solid">
-                    <input
-                      class="form-check-input h-20px w-20px"
-                      type="checkbox"
-                      name="communication[]"
-                      value="phone"
-                    />
-
-                    <span class="form-check-label fw-semobold"> Phone </span>
-                  </label>
-                  <!--end::Checkbox-->
-                </div>
-                <!--end::Checkboxes-->
-              </div>
-              <!--end::Wrapper-->
             </div>
             <!--end::Input group-->
 
@@ -278,7 +185,7 @@
                 type="submit"
               >
                 <span v-if="!loading" class="indicator-label">
-                  Submit
+                  Create
                   <span class="svg-icon svg-icon-3 ms-2 me-0">
                     <inline-svg src="/media/icons/duotune/arrows/arr064.svg" />
                   </span>
@@ -319,14 +226,15 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { hideModal } from "@/core/helpers/dom";
+import { createCheck } from "@/core/services/CheckService";
 import Swal from "sweetalert2";
+import {useAgentsStore} from "@/stores/amiok/agents";
 
 interface NewAddressData {
-  targetTitle: string;
-  assign: string;
-  dueDate: string;
-  targetDetails: string;
-  tags: Array<string>;
+  name: string;
+  endpoint: string;
+  interval: string;
+  agents: string;
 }
 
 export default defineComponent({
@@ -337,41 +245,45 @@ export default defineComponent({
     const newTargetModalRef = ref<null | HTMLElement>(null);
     const loading = ref<boolean>(false);
 
-    const targetData = ref<NewAddressData>({
-      targetTitle: "",
-      assign: "",
-      dueDate: "",
-      targetDetails: "",
-      tags: ["important", "urgent"],
+    const store = useAgentsStore();
+    store.list();
+
+    setInterval(store.list, 500);
+
+    const checkData = ref<NewAddressData>({
+      name: "",
+      endpoint: "",
+      interval: "",
+      agents: "",
     });
 
     const rules = ref({
-      targetTitle: [
+      name: [
         {
           required: true,
-          message: "Please input Activity name",
+          message: "Please input Check name",
           trigger: "blur",
         },
       ],
-      assign: [
+      endpoint: [
         {
           required: true,
-          message: "Please select Activity zone",
-          trigger: "change",
+          message: "Please input a valid http endpoint",
+          trigger: "blur",
         },
       ],
-      dueDate: [
+      interval: [
         {
           required: true,
-          message: "Please select Activity zone",
-          trigger: "change",
+          message: "Please input a interval",
+          trigger: "blur",
         },
       ],
-      tags: [
+      agents: [
         {
           required: true,
-          message: "Please select Activity zone",
-          trigger: "change",
+          message: "Please select Agents",
+          trigger: "blur",
         },
       ],
     });
@@ -385,22 +297,43 @@ export default defineComponent({
         if (valid) {
           loading.value = true;
 
-          setTimeout(() => {
-            loading.value = false;
-
-            Swal.fire({
-              text: "Form has been successfully submitted!",
-              icon: "success",
-              buttonsStyling: false,
-              confirmButtonText: "Ok, got it!",
-              heightAuto: false,
-              customClass: {
-                confirmButton: "btn btn-primary",
-              },
-            }).then(() => {
-              hideModal(newTargetModalRef.value);
-            });
-          }, 2000);
+          createCheck(checkData.value)
+              .then(() => {
+                loading.value = false;
+                Swal.fire({
+                  text: "Check has been created",
+                  icon: "success",
+                  buttonsStyling: false,
+                  confirmButtonText: "Ok, got it!",
+                  heightAuto: false,
+                  customClass: {
+                    confirmButton: "btn btn-primary",
+                  },
+                }).then(() => {
+                  checkData.value = {
+                    name: "",
+                    endpoint: "",
+                    agents: "",
+                    interval: ""
+                  }
+                  hideModal(newTargetModalRef.value);
+                });
+              })
+              .catch((err) => {
+                loading.value = false;
+                Swal.fire({
+                  text: "Check creation failed",
+                  icon: "error",
+                  buttonsStyling: false,
+                  confirmButtonText: "Ok, got it!",
+                  heightAuto: false,
+                  customClass: {
+                    confirmButton: "btn btn-primary",
+                  },
+                }).then(() => {
+                  hideModal(newTargetModalRef.value);
+                });
+              })
         } else {
           Swal.fire({
             text: "Sorry, looks like there are some errors detected, please try again.",
@@ -418,7 +351,8 @@ export default defineComponent({
     };
 
     return {
-      targetData,
+      store,
+      checkData,
       submit,
       loading,
       formRef,
