@@ -33,6 +33,15 @@ const routes: Array<RouteRecordRaw> = [
           breadcrumbs: ["Agents"],
         },
       },
+      {
+        path: "/entities/checks",
+        name: "checks",
+        component: () => import("@/views/amiok/entities/Checks.vue"),
+        meta: {
+          pageTitle: "Checks",
+          breadcrumbs: ["Checks"],
+        },
+      },
     ],
   },
   {

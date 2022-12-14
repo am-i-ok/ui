@@ -24,13 +24,19 @@ const MainMenuConfig: Array<MenuItem> = [
     route: "/entities",
     pages: [
       {
+        heading: "Checks",
+        route: "/entities/checks",
+        svgIcon: "/media/icons/duotune/art/art002.svg",
+        fontIcon: "bi-app-indicator",
+      },
+      {
         heading: "Agents",
         route: "/entities/agents",
         svgIcon: "/media/icons/duotune/art/art002.svg",
         fontIcon: "bi-app-indicator",
       }
     ],
-  }
+  },
 ];
 
 export default MainMenuConfig;

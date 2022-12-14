@@ -2,7 +2,7 @@ import { ref } from "vue";
 import { defineStore } from "pinia";
 import ApiService from "@/core/services/ApiService";
 
-export const useAgetnsStore = defineStore("agents", () => {
+export const useAgentsStore = defineStore("agents", () => {
   const agents = ref([]);
 
   async function list() {

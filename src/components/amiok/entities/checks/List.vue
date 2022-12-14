@@ -14,9 +14,9 @@
             <tr class="fw-bold text-muted">
               <th class="min-w-10px">Status</th>
               <th class="min-w-10px">Name</th>
-              <th class="min-w-10px">Location</th>
+              <th class="min-w-10px">Endpoint</th>
               <th class="min-w-120px">Creation Date</th>
-              <th class="min-w-120px">Last Seen</th>
+              <th class="min-w-120px">Last Update</th>
               <th class="min-w-100px text-end">Actions</th>
             </tr>
           </thead>
@@ -24,12 +24,12 @@
 
           <!--begin::Table body-->
           <tbody>
-            <template v-for="(item, index) in store.agents" :key="index">
+            <template v-for="(item, index) in store.checks" :key="index">
               <tr>
                 <td>
                   <span
                       class="text-dark fw-bold d-block mb-1 fs-6"
-                  >Online
+                  >{{ item.status }}
                   </span>
                 </td>
 
@@ -43,7 +43,7 @@
                 <td>
                   <span
                       class="text-dark fw-bold d-block mb-1 fs-6"
-                  >{{ item.location }}
+                  >{{ item.endpoint }}
                   </span>
                 </td>
 
@@ -107,16 +107,16 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { useAgentsStore } from '@/stores/amiok/agents'
+import { useCheckStore } from '@/stores/amiok/checks'
 
 export default defineComponent({
-  name: "entities-agents-list",
+  name: "entities-checks-list",
   components: {},
   props: {
     widgetClasses: String,
   },
   setup() {
-    const store = useAgentsStore();
+    const store = useCheckStore();
     store.list();
 
     setInterval(store.list, 500);
