@@ -14,6 +14,7 @@
             <tr class="fw-bold text-muted">
               <th class="min-w-10px">Status</th>
               <th class="min-w-10px">Name</th>
+              <th class="min-w-10px">Location</th>
               <th class="min-w-120px">Creation Date</th>
               <th class="min-w-120px">Last Seen</th>
               <th class="min-w-100px text-end">Actions</th>
@@ -28,7 +29,7 @@
                 <td>
                   <span
                       class="text-dark fw-bold d-block mb-1 fs-6"
-                  >{{ item.status }}
+                  >Online
                   </span>
                 </td>
 
@@ -36,6 +37,13 @@
                   <span
                     class="text-dark fw-bold d-block mb-1 fs-6"
                     >{{ item.name }}
+                  </span>
+                </td>
+
+                <td>
+                  <span
+                      class="text-dark fw-bold d-block mb-1 fs-6"
+                  >{{ item.location }}
                   </span>
                 </td>
 
