@@ -12,10 +12,9 @@
           <!--begin::Table head-->
           <thead>
             <tr class="fw-bold text-muted">
-              <th class="min-w-10px">Status</th>
               <th class="min-w-10px">Name</th>
-              <th class="min-w-10px">Endpoint</th>
               <th class="min-w-10px">Agents</th>
+              <th class="min-w-10px">Endpoint</th>
               <th class="min-w-100px text-end">Actions</th>
             </tr>
           </thead>
@@ -26,24 +25,17 @@
             <template v-for="(item, index) in store.checks" :key="index">
               <tr>
                 <td>
-                  <span
-                      class="text-dark fw-bold d-block mb-1 fs-6"
-                  >{{ item.status }}
-                  </span>
-                </td>
-
-                <td>
-                  <span
-                    class="text-dark fw-bold d-block mb-1 fs-6"
+                  <div class="d-flex align-items-center">
+                    <span
+                        class="bullet bullet-vertical h-40px"
+                        style="margin-right: 10px"
+                        :class="`bg-${item.color}`"
+                    ></span>
+                    <span
+                        class="text-dark fw-bold d-block mb-1 fs-6"
                     >{{ item.name }}
                   </span>
-                </td>
-
-                <td>
-                  <span
-                      class="text-dark fw-bold d-block mb-1 fs-6"
-                  >{{ item.endpoint }}
-                  </span>
+                  </div>
                 </td>
 
                 <td>
@@ -52,12 +44,19 @@
                       <div
                           class="symbol symbol-35px symbol-circle"
                           data-bs-toggle="tooltip"
-                          :title="item.name"
+                          :title="item.location"
                       >
                         <img alt="Pic" :src="item.icon" />
                       </div>
                     </template>
                   </div>
+                </td>
+
+                <td>
+                  <span
+                      class="text-dark d-block mb-1 fs-6"
+                  >{{ item.endpoint }}
+                  </span>
                 </td>
 
                 <td class="text-end">

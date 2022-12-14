@@ -12,8 +12,6 @@
           <!--begin::Table head-->
           <thead>
             <tr class="fw-bold text-muted">
-              <th class="min-w-10px">Status</th>
-              <th class="min-w-10px">Icon</th>
               <th class="min-w-10px">Name</th>
               <th class="min-w-10px">Location</th>
               <th class="min-w-120px">Creation Date</th>
@@ -28,43 +26,40 @@
             <template v-for="(item, index) in store.agents" :key="index">
               <tr>
                 <td>
-                  <span
-                      class="text-dark fw-bold d-block mb-1 fs-6"
-                  >Online
-                  </span>
-                </td>
-
-                <td>
-                  <span class="svg-icon svg-icon-3">
+                  <div class="d-flex align-items-center">
+                    <span
+                        class="bullet bullet-vertical h-40px"
+                        style="margin-right: 10px"
+                        :class="`bg-success`"
+                    ></span>
+                    <span class="svg-icon svg-icon-1" style="margin-right: 10px">
                       <inline-svg
                           :src="item.icon"
                       />
                     </span>
-                </td>
-
-                <td>
-                  <span
-                    class="text-dark fw-bold d-block mb-1 fs-6"
+                    <span
+                        class="text-dark fw-bold d-block mb-1 fs-6"
                     >{{ item.name }}
                   </span>
+                  </div>
                 </td>
 
                 <td>
                   <span
-                      class="text-dark fw-bold d-block mb-1 fs-6"
+                      class="text-dark d-block mb-1 fs-6"
                   >{{ item.location }}
                   </span>
                 </td>
 
                 <td>
                   <span>
-                    {{ item.createdAt }}
+                    15.12.2022
                   </span>
                 </td>
 
                 <td>
                   <span>
-                    {{ item.updatedAt }}
+                    Few seconds ago
                   </span>
                 </td>
 
