@@ -13,6 +13,7 @@
           <thead>
             <tr class="fw-bold text-muted">
               <th class="min-w-10px">Status</th>
+              <th class="min-w-10px">Icon</th>
               <th class="min-w-10px">Name</th>
               <th class="min-w-10px">Location</th>
               <th class="min-w-120px">Creation Date</th>
@@ -31,6 +32,14 @@
                       class="text-dark fw-bold d-block mb-1 fs-6"
                   >Online
                   </span>
+                </td>
+
+                <td>
+                  <span class="svg-icon svg-icon-3">
+                      <inline-svg
+                          :src="item.icon"
+                      />
+                    </span>
                 </td>
 
                 <td>

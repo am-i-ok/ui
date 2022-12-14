@@ -15,8 +15,7 @@
               <th class="min-w-10px">Status</th>
               <th class="min-w-10px">Name</th>
               <th class="min-w-10px">Endpoint</th>
-              <th class="min-w-120px">Creation Date</th>
-              <th class="min-w-120px">Last Update</th>
+              <th class="min-w-10px">Agents</th>
               <th class="min-w-100px text-end">Actions</th>
             </tr>
           </thead>
@@ -48,15 +47,17 @@
                 </td>
 
                 <td>
-                  <span>
-                    {{ item.createdAt }}
-                  </span>
-                </td>
-
-                <td>
-                  <span>
-                    {{ item.updatedAt }}
-                  </span>
+                  <div class="symbol-group symbol-hover flex-nowrap">
+                    <template v-for="(item, i) in item.agents" :key="i">
+                      <div
+                          class="symbol symbol-35px symbol-circle"
+                          data-bs-toggle="tooltip"
+                          :title="item.name"
+                      >
+                        <img alt="Pic" :src="item.icon" />
+                      </div>
+                    </template>
+                  </div>
                 </td>
 
                 <td class="text-end">
