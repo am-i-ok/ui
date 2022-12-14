@@ -41,13 +41,16 @@
 
                 <td>
                   <div class="symbol-group symbol-hover flex-nowrap">
-                    <template v-for="(item, i) in item.agents" :key="i">
+                    <template v-for="(j, i) in item.agents" :key="i">
                       <div
                           class="symbol symbol-35px symbol-circle"
                           data-bs-toggle="tooltip"
-                          :title="item.location"
+                          :title="j.location"
                       >
-                        <img alt="Pic" :src="item.icon" />
+                        <img alt="Pic" :src="j.icon" />
+                        <div>
+                          <span :class="`position-absolute badge badge-circle badge-${item.color}`" style="width: 0.7rem; height: 0.7rem; margin-top: -36px"></span>
+                        </div>
                       </div>
                     </template>
                   </div>
