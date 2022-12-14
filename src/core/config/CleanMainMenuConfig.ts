@@ -1,0 +1,36 @@
+export interface MenuItem {
+  heading?: string;
+  sectionTitle?: string;
+  route?: string;
+  pages?: Array<MenuItem>;
+  svgIcon?: string;
+  fontIcon?: string;
+  sub?: Array<MenuItem>;
+}
+
+const MainMenuConfig: Array<MenuItem> = [
+  {
+    pages: [
+      {
+        heading: "Dashboard",
+        route: "/dashboard",
+        svgIcon: "/media/icons/duotune/art/art002.svg",
+        fontIcon: "bi-app-indicator",
+      },
+    ],
+  },
+  {
+    heading: "entities",
+    route: "/entities",
+    pages: [
+      {
+        heading: "Agents",
+        route: "/entities/agents",
+        svgIcon: "/media/icons/duotune/art/art002.svg",
+        fontIcon: "bi-app-indicator",
+      }
+    ],
+  }
+];
+
+export default MainMenuConfig;
