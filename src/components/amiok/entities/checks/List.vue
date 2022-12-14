@@ -15,6 +15,7 @@
               <th class="min-w-10px">Name</th>
               <th class="min-w-10px">Agents</th>
               <th class="min-w-10px">Endpoint</th>
+              <th class="min-w-10px">Interval</th>
               <th class="min-w-100px text-end">Actions</th>
             </tr>
           </thead>
@@ -56,6 +57,13 @@
                   <span
                       class="text-dark d-block mb-1 fs-6"
                   >{{ item.endpoint }}
+                  </span>
+                </td>
+
+                <td>
+                  <span
+                      class="text-dark d-block mb-1 fs-6"
+                  >{{ item.interval }} Seconds
                   </span>
                 </td>
 
